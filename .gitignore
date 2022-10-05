@@ -2,6 +2,12 @@
 /dist
 /node_modules
 
+#dot env
+.env
+
+#editor config
+.editorconfig
+
 # Logs
 logs
 *.log
