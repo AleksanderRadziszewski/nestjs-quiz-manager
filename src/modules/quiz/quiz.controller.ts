@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  ParseIntPipe,
   Post,
   UsePipes,
   ValidationPipe,
@@ -14,8 +16,12 @@ import { QuizService } from './quiz.service';
 export class QuizController {
   constructor(private quizService: QuizService) {}
   @Get()
-  getAllQuizzes() {
-    return this.quizService.getAllQuiz();
+  async getAllQuizzes(): Promise<Quiz[]> {
+    return await this.quizService.getAllQuizes();
+  }
+  @Get('/:id')
+  async getQuizById(@Param('id', ParseIntPipe) id: number): Promise<Quiz> {
+    return await this.quizService.getQuizById(id);
   }
   @Post('/create')
   @UsePipes(ValidationPipe)

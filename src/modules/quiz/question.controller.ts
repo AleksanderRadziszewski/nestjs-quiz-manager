@@ -8,15 +8,20 @@ import {
 import { CreateQuestionDto } from './dto/CreateQuestion.dto';
 import { Question } from './question.entity';
 import { QuestionService } from './question.service';
+import { QuizService } from './quiz.service';
 
 @Controller('question')
 export class QuestionController {
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private quizService: QuizService,
+  ) {}
   @Post()
   @UsePipes(ValidationPipe)
   async saveQuestion(
     @Body() questionData: CreateQuestionDto,
   ): Promise<Question> {
-    return await this.questionService.createQuestion(questionData);
+    const quiz = await this.quizService.getQuizById(questionData.quizId);
+    return await this.questionService.createQuestion(questionData, quiz);
   }
 }
