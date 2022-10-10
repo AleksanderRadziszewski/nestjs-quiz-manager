@@ -13,7 +13,7 @@ export class Question {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar' })
+  @Column()
   question: string;
 
   @ManyToOne(() => Quiz, (quiz) => quiz.questions)

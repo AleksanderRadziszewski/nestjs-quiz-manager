@@ -9,13 +9,17 @@ export class QuizService {
   constructor(
     @InjectRepository(Quiz) private readonly quizRepository: Repository<Quiz>,
   ) {}
-  async getAllQuizes(): Promise<Quiz[]> {
-    return await this.quizRepository.find();
+  async getAllQuiz(): Promise<Quiz[]> {
+    return await this.quizRepository
+      .createQueryBuilder('q')
+      .leftJoinAndSelect('q.questions', 'qt')
+      .leftJoinAndSelect('qt.options', 'o')
+      .getMany();
   }
   async getQuizById(id: number): Promise<Quiz> {
     return await this.quizRepository.findOne({
       where: { id: id },
-      relations: { questions: true },
+      relations: { questions: { options: true } },
     });
   }
   async createNewQuiz(quizData: CreateQuizDto) {

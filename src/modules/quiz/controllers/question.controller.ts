@@ -25,6 +25,10 @@ export class QuestionController {
   ): Promise<Question> {
     return this.questionService.findQuestionById(id);
   }
+  @Get()
+  async getAllQuestions(): Promise<Question[]> {
+    return await this.questionService.getAllQuestions();
+  }
   @Post()
   @UsePipes(ValidationPipe)
   async saveQuestion(

@@ -18,6 +18,9 @@ export class QuestionService {
       relations: { quiz: true, options: true },
     });
   }
+  async getAllQuestions(): Promise<Question[]> {
+    return await this.questionRepository.find({ relations: { options: true } });
+  }
   async createQuestion(
     questionData: CreateQuestionDto,
     quiz: Quiz,

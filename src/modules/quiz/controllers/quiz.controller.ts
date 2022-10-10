@@ -16,8 +16,8 @@ import { QuizService } from '../services/quiz.service';
 export class QuizController {
   constructor(private quizService: QuizService) {}
   @Get()
-  async getAllQuizzes(): Promise<Quiz[]> {
-    return await this.quizService.getAllQuizes();
+  async getAllQuiz(): Promise<Quiz[]> {
+    return await this.quizService.getAllQuiz();
   }
   @Get('/:id')
   async getQuizById(@Param('id', ParseIntPipe) id: number): Promise<Quiz> {
