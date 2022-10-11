@@ -5,12 +5,14 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { QuizModule } from './modules/quiz/quiz.module';
 import { typeOrmConfigAsync } from './config/typeorm.config';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync(typeOrmConfigAsync),
     QuizModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
