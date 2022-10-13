@@ -6,10 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { QuizModule } from './modules/quiz/quiz.module';
 import { typeOrmConfigAsync } from './config/typeorm.config';
 import { AuthModule } from './modules/auth/auth.module';
-import { UserController } from './modules/user/user.controller';
 import { UserModule } from './modules/user/user.module';
 import { UserService } from './modules/user/user.service';
-import { UserModule } from './modules/user/user.module';
 import { UserController } from './modules/user/user.controller';
 
 @Module({
