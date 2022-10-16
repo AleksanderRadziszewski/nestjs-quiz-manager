@@ -21,7 +21,7 @@ export class AuthService {
       throw new UnauthorizedException();
     return user;
   }
-  async generateToken(user: any) {
+  generateToken(user: any) {
     return {
       accessToken: this.jwtService.sign({
         name: user.name,
