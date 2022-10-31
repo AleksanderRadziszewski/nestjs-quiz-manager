@@ -5,8 +5,6 @@ import {
   Param,
   ParseIntPipe,
   Post,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { CreateQuestionDto } from '../dto/create-question.dto';
 import { Question } from '../entities/question.entity';
@@ -30,7 +28,6 @@ export class QuestionController {
     return await this.questionService.getAllQuestions();
   }
   @Post()
-  @UsePipes(ValidationPipe)
   async saveQuestion(
     @Body() questionData: CreateQuestionDto,
   ): Promise<Question> {

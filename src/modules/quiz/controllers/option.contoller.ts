@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  Post,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { CreateOptionDto } from '../dto/create-option.dto';
 import { OptionService } from '../services/option.service';
 import { QuestionService } from '../services/question.service';
@@ -16,7 +10,6 @@ export class OptionController {
     private questionService: QuestionService,
   ) {}
   @Post()
-  @UsePipes(ValidationPipe)
   async saveOptionToQuestion(@Body() createOption: CreateOptionDto) {
     const question = await this.questionService.findQuestionById(
       createOption.questionId,

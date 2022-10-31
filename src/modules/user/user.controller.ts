@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { ApiBadRequestResponse, ApiCreatedResponse } from '@nestjs/swagger';
 import { SETTINGS } from 'src/app.utils';
-import { UserRegisterRequestDto } from './dto/user-register.req.dto';
+import { UserRegisterDto } from './dto/user-register.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -8,8 +9,13 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
   @Post('/register')
+  @ApiCreatedResponse({
+    description: 'Created user object as response',
+    type: User,
+  })
+  @ApiBadRequestResponse({ description: ' User cannot register. Try again' })
   async doUserRegistration(
-    @Body(SETTINGS.VALIDATION_PIPE) userRegister: UserRegisterRequestDto,
+    @Body(SETTINGS.VALIDATION_PIPE) userRegister: UserRegisterDto,
   ): Promise<User> {
     return await this.userService.doUserRegistration(userRegister);
   }
