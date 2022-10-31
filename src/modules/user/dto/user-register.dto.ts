@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, Length, Matches } from 'class-validator';
 import { MESSAGES, REGEX } from '../../../app.utils';
 
-export class UserRegisterRequestDto {
+export class UserRegisterDto {
   @ApiProperty({
     description: 'The name of the User',
     example: 'Alex Kowalski',

@@ -26,7 +26,10 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @ApiProperty({ description: ' Hashed user password' })
+  @ApiProperty({
+    description: ' Hashed user password',
+    example: 'some encrypted value',
+  })
   @Column()
   password: string;
 
