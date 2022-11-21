@@ -1,8 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Question } from './question.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
-@Entity('options')
+@Entity()
 export class Option {
   @ApiProperty({ description: ' Option id', example: 1 })
   @PrimaryGeneratedColumn()
@@ -21,6 +20,7 @@ export class Option {
   @Column()
   isCorrect: boolean;
 
-  @ManyToOne(() => Question, (question) => question.options)
-  question: Question;
+  // @ApiProperty({ type: () => Question })
+  // @ManyToOne(() => Question, (question) => question.options)
+  question: any;
 }

@@ -6,10 +6,9 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Quiz } from './quiz.entity';
-import { Option } from './option.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
-@Entity('questions')
+@Entity()
 export class Question {
   @ApiProperty({ description: ' Question id', example: 1 })
   @PrimaryGeneratedColumn()
@@ -21,9 +20,11 @@ export class Question {
   @Column()
   question: string;
 
+  @ApiProperty({ type: () => Quiz })
   @ManyToOne(() => Quiz, (quiz) => quiz.questions)
   quiz: Quiz;
 
-  @OneToMany(() => Option, (option) => option.question)
-  options: Option[];
+  // @ApiProperty({ type: () => Option })
+  // @OneToMany(() => Option, (option) => option.question)
+  options: any[];
 }

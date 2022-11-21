@@ -1,8 +1,7 @@
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Question } from './question.entity';
 
-@Entity('quizes')
+@Entity()
 export class Quiz {
   @ApiProperty({ description: ' Quiz id', example: 1 })
   @PrimaryGeneratedColumn({
@@ -25,6 +24,5 @@ export class Quiz {
   })
   isActive: boolean;
 
-  @OneToMany(() => Question, (question) => question.quiz)
-  questions: Question[];
+  questions: any[];
 }
