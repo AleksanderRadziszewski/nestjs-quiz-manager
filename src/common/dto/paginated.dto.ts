@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Quiz } from 'src/modules/quiz/entities/quiz.entity';
 
 interface PaginationMeta {
   totalItems: number;
@@ -8,9 +9,9 @@ interface PaginationMeta {
   currentPage: number;
 }
 
-class PaginatedDto<TData> {
+class PaginatedDto {
   @ApiProperty()
-  items: TData[];
+  items: Quiz[];
   @ApiProperty()
   meta: PaginationMeta;
 }
