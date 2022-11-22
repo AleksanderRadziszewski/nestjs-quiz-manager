@@ -6,11 +6,13 @@ import {
   ParseIntPipe,
   Post,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateQuestionDto } from '../dto/create-question.dto';
 import { Question } from '../entities/question.entity';
 import { QuestionService } from '../services/question.service';
 import { QuizService } from '../services/quiz.service';
 
+@ApiTags('Question')
 @Controller('question')
 export class QuestionController {
   constructor(

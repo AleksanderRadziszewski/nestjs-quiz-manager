@@ -1,5 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+/* eslint-disable import/no-cycle */
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 import { Question } from './question.entity';
 
 @Entity('quizes')
@@ -25,6 +26,9 @@ export class Quiz {
   })
   isActive: boolean;
 
+  @ApiProperty({
+    description: 'List of questions',
+  })
   @OneToMany(() => Question, (question) => question.quiz)
   questions: Question[];
 }

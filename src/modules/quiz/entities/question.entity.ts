@@ -1,6 +1,8 @@
+/* eslint-disable import/no-cycle */
 import {
   Column,
   Entity,
+  IsNull,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -21,9 +23,13 @@ export class Question {
   @Column()
   question: string;
 
+  @ApiProperty({
+    description: 'Quiz of the question',
+  })
   @ManyToOne(() => Quiz, (quiz) => quiz.questions)
   quiz: Quiz;
 
+  @ApiProperty({ description: 'Options of the question' })
   @OneToMany(() => Option, (option) => option.question)
   options: Option[];
 }

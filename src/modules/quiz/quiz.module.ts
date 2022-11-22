@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { QuestionController } from './controllers/question.controller';
