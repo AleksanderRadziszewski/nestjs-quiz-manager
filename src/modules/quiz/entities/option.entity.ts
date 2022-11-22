@@ -1,7 +1,9 @@
+/* eslint-disable import/no-cycle */
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
+import { Question } from './question.entity';
 
-@Entity()
+@Entity('options')
 export class Option {
   @ApiProperty({ description: ' Option id', example: 1 })
   @PrimaryGeneratedColumn()
@@ -13,14 +15,11 @@ export class Option {
   })
   @Column()
   text: string;
-  @ApiProperty({
-    description: 'correctness',
-    example: 'True',
-  })
+
+  @ApiProperty({ description: 'Whether option is correct', example: true })
   @Column()
   isCorrect: boolean;
 
-  // @ApiProperty({ type: () => Question })
-  // @ManyToOne(() => Question, (question) => question.options)
-  question: any;
+  @ManyToOne(() => Question, (question) => question.options)
+  question: Question;
 }
