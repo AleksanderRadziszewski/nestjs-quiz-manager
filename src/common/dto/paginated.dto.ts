@@ -11,9 +11,9 @@ interface PaginationMeta {
 
 class PaginatedDto {
   @ApiProperty()
-  items: Quiz[];
-  @ApiProperty()
   meta: PaginationMeta;
+  @ApiProperty()
+  items: Quiz[];
 }
 
 export { PaginationMeta, PaginatedDto };

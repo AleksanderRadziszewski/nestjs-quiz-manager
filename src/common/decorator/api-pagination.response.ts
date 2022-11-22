@@ -19,7 +19,7 @@ export const ApiPaginatedResponse = (
           { $ref: getSchemaPath(PaginatedDto) },
           {
             properties: {
-              results: {
+              items: {
                 type: 'array',
                 items: { $ref: getSchemaPath(options.model) },
               },

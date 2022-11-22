@@ -16,12 +16,12 @@ import { Quiz } from '../entities/quiz.entity';
 import { QuizService } from '../services/quiz.service';
 
 @ApiTags('Quiz')
-@ApiPaginatedResponse({ model: Quiz, description: 'List of quizzes' })
 @Controller('quiz')
 export class QuizController {
   constructor(private quizService: QuizService) {}
 
   @Get('/')
+  @ApiPaginatedResponse({ model: Quiz, description: 'List of quizzes' })
   async getAllQuiz(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
