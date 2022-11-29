@@ -1,12 +1,14 @@
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { SeederOptions } from 'typeorm-extension';
+import { MainSeeder } from './seeds/MainSeeder';
 
 config();
 
 const configService = new ConfigService();
 
-export default new DataSource({
+const options: DataSourceOptions & SeederOptions = {
   type: 'postgres',
   host: configService.get('DB_HOST'),
   port: configService.get('DB_PORT'),
@@ -17,4 +19,7 @@ export default new DataSource({
   logging: false,
   entities: ['**/*.entity.ts'],
   migrations: ['./src/migrations/*.ts'],
-});
+  seeds: [MainSeeder],
+};
+
+export const AppDataSource = new DataSource(options);

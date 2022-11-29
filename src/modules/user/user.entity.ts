@@ -30,7 +30,7 @@ export class User {
     description: ' Hashed user password',
     example: 'some encrypted value',
   })
-  @Column()
+  @Column({ type: 'text' })
   password: string;
 
   @ApiProperty({ description: 'When user was created' })
